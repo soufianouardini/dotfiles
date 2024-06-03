@@ -92,7 +92,7 @@ fixMemLeak(){
 }
 fixMemLeak&
 
-bash ~/home/scripts/sxhkd-lunch.sh &
+bash ~/.config/sxhkd/sxhkd-lunch.sh &
 
 pavucontrol&
 
