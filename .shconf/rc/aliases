@@ -86,10 +86,7 @@ alias bare='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias bareadd='bare add `bare ls-files --modified`'
 alias barecom="bare commit -m 'auto-commit: dotfiles have been changed'"
 alias barePushRemote='bare push origin main'
-alias barePushLocalS='bare push "git@core2.home:/media/D/bkp/bkpRepos/.dotfiles.git" main'
-alias barePushLocal='bare push "/media/D/bkp/bkpRepos/.dotfiles.git" main'
-alias barepush='barePushRemote; barePushLocal; barePushLocalS'
-alias baresync='bareadd && barecom && barepush'
+alias baresync='bareadd && barecom && barePushRemote'
 
 # alias eh='fc -e vim'
 # alias ..='cd ..'
