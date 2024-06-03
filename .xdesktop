@@ -97,3 +97,4 @@ bash ~/.config/sxhkd/sxhkd-lunch.sh &
 pavucontrol&
 
 exec i3
+#test
