@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# echo "remove paths mounted from the 2nd drive!!!"
+
+# server monitoring
+# ssh -i "$HOME/.ssh/c2.pem" admin@13.36.38.98 "free -h; systemctl status mariadb; pgrep node"
+
+# month=$(date "+%m")
+# if [[ $month -eq 4 ]]; then
+# 	echo "Check SSL Cert (renew before the 5th of january)"
+# 	day=$(date "+%d")
+# 	if [ $day -ge 30 ]; then
+# 		echo "======================> Check SSL Cert; one day left"
+# 	fi
+# fi
+
+## random month name :)
+echo $(shuf -n 1 -e January-Janvier February-Février March-Mars April-Avril May-Mai June-Juin July-Juillet August-Août September-Septembre October-Octobre November-Novembre December-Décembre)
+
+
+## random english word from my dictionary each session
+## bash ~/home/scripts/vocab/voclook.sh

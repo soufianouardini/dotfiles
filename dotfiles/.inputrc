@@ -1,0 +1,46 @@
+# enabling vi mode
+set show-mode-in-prompt on
+
+# beautify
+set colored-completion-prefix on
+set colored-stats on
+
+# ^C no longer shows on C-c keypress
+set echo-control-characters off
+
+
+"\t": menu-complete
+
+# Bash Keybindings - I need to try this out
+#"\C-f":"cd /home/jake/.config/"
+
+# change the cursor shape dpending on the vi mode
+$if term=linux
+	set vi-ins-mode-string \1\e[?0c\2
+	set vi-cmd-mode-string \1\e[?8c\2
+$else
+	set vi-ins-mode-string \1\e[6 q\2
+	set vi-cmd-mode-string \1\e[2 q\2
+$endif
+
+# gets the history depending on what you've typed in the prompt
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# doesn't work with j and k
+# set editing-mode vi
+# $if mode=vi
+# set keymap vi-command
+# # these are for vi-command mode
+# "\e[A": history-search-backward
+# "\e[B": history-search-forward
+# j: history-search-forward
+# k: history-search-backward
+# set keymap vi-insert
+# # these are for vi-insert mode
+# "\e[A": history-search-backward
+# "\e[B": history-search-forward
+# $endif
+
+# single tab completion (shows all possible completion)
+# set show-all-if-ambiguous on

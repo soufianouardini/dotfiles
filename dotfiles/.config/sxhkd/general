@@ -1,0 +1,87 @@
+# reload
+super + r; a
+  i3-msg restart
+  bash $HOME/.config/polybar/lunch.sh
+  bash $HOME/home/scripts/sxhkd-lunch.sh
+super + r; s
+  bash $HOME/home/scripts/sxhkd-lunch.sh
+super + r; i
+  i3-msg restart
+super + r; p
+  polybar-msg cmd restart
+# bash $HOME/.config/polybar/lunch.sh
+
+# copy to clipboard history
+# beware keybindings duplication; sxhdxk... sucks at handling errors
+# super + c; {a-z}
+#   bash $HOME/home/scripts/dmscripts/system/list/clipboard.sh copy {a-z}
+
+# Audio
+XF86AudioRaiseVolume
+  pactl set-sink-volume @DEFAULT_SINK@ +5%
+XF86AudioLowerVolume
+  pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+super + o: {j, k}
+  pactl set-sink-volume @DEFAULT_SINK@ {-5%, +5%}
+# XF86AudioMute
+super + o: m
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
+# XF86AudioMicMute
+# super + s: m
+#   pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+### DMENU SCRIPTS
+super + space
+  bash -c "$HOME/home/scripts/dmscripts/system/list/keymaps.sh"
+super + s; s
+  bash -c '$HOME/home/scripts/dmscripts/system/index.sh'
+super + s; a
+  bash -c '$HOME/home/scripts/dmscripts/index.sh'
+# alacritty --hold -o font.size=16 -e zsh -c "cd $HOME/home/bookmarks && code $HOME/home/bookmarks/main.md"&
+super + s; c
+  bash -c '$HOME/home/scripts/dmscripts/index.sh'
+
+super + c; j
+  bash $HOME/home/scripts/dmscripts/snippets.sh js
+super + c; t
+  bash $HOME/home/scripts/dmscripts/snippets.sh ts
+
+# start alacritty
+alt + Return
+  alacritty -o font.size=13&
+
+## special characters (118 = Insert key)
+# accent aigu
+# super + e; {e,c,t}
+#   {bash -c "$HOME/home/scripts/dmscripts/frenchAccents.sh é", bash -c "$HOME/home/scripts/dmscripts/frenchAccents.sh ç", bash -c "$HOME/home/scripts/dmscripts/binaryCasing.sh e"}
+# # accnet grave
+# super + g; {a,e,u}
+#   {bash -c "$HOME/home/scripts/dmscripts/frenchAccents.sh à", bash -c "$HOME/home/scripts/dmscripts/frenchAccents.sh è", bash -c "$HOME/home/scripts/dmscripts/frenchAccents.sh ù"}
+# # accnet circonflex (a,i,o are not necessary)
+# super + h; {a,i,o,u,e}
+#   {bash -c "$HOME/home/scripts/dmscripts/frenchAccents.sh à", bash -c "$HOME/home/scripts/dmscripts/frenchAccents.sh î", bash -c "$HOME/home/scripts/dmscripts/frenchAccents.sh ô", bash -c "$HOME/home/scripts/dmscripts/frenchAccents.sh û", bash -c "$HOME/home/scripts/dmscripts/frenchAccents.sh e"}
+# # trima (ä, ë, ï, ö, ü)
+# super + t; {e,i}
+#   {bash -c "$HOME/home/scripts/dmscripts/frenchAccents.sh ë", bash -c "$HOME/home/scripts/dmscripts/frenchAccents.sh ï"}
+
+## lunch apps
+super + a; {a,c,b,e,r,d,v,s,p}
+  {dmenu_run, chromium, brave-browser, microsoft-edge, alacritty -e "ranger", discord, code, flameshot gui, bash -c "$HOME/home/scripts/polybarToggle.sh"}
+
+
+# monitor
+super + v; {1-9}
+  zsh -c "xrandr --output HDMI-1 --brightness .{1-9}"
+super + v; {y, k, o}
+  zsh -c "xrandr --output HDMI-1 {--gamma 1:1:.1, --off, --auto}"
+XF86MonBrightnessUp
+  xbacklight -inc 10
+XF86MonBrightnessDown
+  xbacklight -dec 10
+
+#### WM
+
+# kill window
+alt + c
+  xdo kill

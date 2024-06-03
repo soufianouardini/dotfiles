@@ -1,0 +1,64 @@
+# kill focused window
+# alt +c
+#   i3-msg kill
+
+# move/focus window
+alt + {_, shift +} + {h,j,k,l}
+  bash -c "$HOME/.config/sxhkd/i3CommandsWhileFS.sh '{focus, move} {left, down, up, right}'"
+
+# resize focused window
+alt + {Left, Down, Up, Right} + {_, shift +}
+  i3-msg resize {shrink width, grow height, shrink height, grow width} {20, 10} px
+alt + m : {h,j,k,l} {_, shift+}
+  i3-msg resize {shrink width, grow height, shrink height, grow width} {20, 10} px
+
+
+# resize and put on the left side
+alt + n
+  bash -c "$HOME/home/scripts/i3scripts/notesWindow.sh"
+
+# enter fullscreen mode for the focused container
+alt + f
+  i3-msg fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+alt + t
+  i3-msg layout tabbed
+alt + s
+  i3-msg layout toggle split
+
+# splitting
+alt + u
+  i3-msg split h
+alt + i
+  i3-msg split v
+
+# focus switch betwrrn flowing windows
+# OR toggle between tiling and floating
+alt + {_, shift +} + space
+  i3-msg {focus mode_, floating }toggle
+
+# focus the parent container
+alt + a
+  i3-msg focus parent
+
+alt + {1-9}
+  i3-msg workspace number {1-9}
+
+# move workspace to monitor
+alt + ctrl + {h, l}
+  i3-msg move workspace to output {left, right}
+
+# move focused container to workspace
+alt + shift + {1-9}
+  i3-msg move container to workspace number "{1-9}"
+
+# reload the configuration file
+# alt + r
+#   i3-msg reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+alt + shift + r
+  i3-msg restart
+# exit i3 (logs you out of your X session)
+alt + shift + q
+  i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'

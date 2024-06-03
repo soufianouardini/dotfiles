@@ -1,0 +1,20 @@
+#! /bin/bash
+
+export TERM=alacritty
+export VISUAL=vim
+export EDITOR=vim
+
+export BROWSER='brave-browser'
+
+export XORGCONFIG=$HOME/.config/X11/
+export DBUS_SESSION_BUS_ADDRESS=$(dbus-launch --exit-with-session | sed -n 's/^DBUS_SESSION_BUS_ADDRESS=//p')
+
+export myscripts="$HOME/home/scripts"
+export mybookmarks="$HOME/home/bookmarks"
+export myprojects="$HOME/home/dev/web-dev/projects"
+
+export ethifname="eno1"
+export wlanifname="wlxe0b94db7afd2"
+
+export driveDHWID="ZA465ASK"
+export driveUSBHWID="2312071447501371310918"

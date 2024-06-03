@@ -1,0 +1,8 @@
+[alias]
+  view = log --all --oneline --graph
+
+[user]
+	name = anasouardini
+	email = ouardinianas@proton.me
+[init]
+	defaultBranch = main

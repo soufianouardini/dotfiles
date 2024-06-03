@@ -1,0 +1,27 @@
+lastupdatecheck: 0
+recentrepos:
+- /home/venego/home/dev/desktop/flashcards-blessed
+- /home/venego/home/dev/desktop/flashcards
+- /home/venego/home/dev/desktop/portal/zap-portal
+- /home/venego/home/dev/desktop/portal/homebrew-portal
+- /home/venego/home/dev/web/db-studio
+- /home/venego/home/scripts/post-installer
+- /home/venego/home/dev/web/portfolio-projects/full/snipshare
+- /home/venego/home/dev/web/portfolio-projects/full/smartTeam
+- /home/venego/home/dev/lab/golang
+- /home/venego/home/dev/web/automation/scrapeyard
+- /home/venego/home/dev/web/portfolio-projects/front/astro/portfolioSite
+- /home/venego/home/dev/desktop/clockify
+- /home/venego/home/dev/web/automation/scrapeyard-v4
+startuppopupversion: 5
+lastversion: 0.41.0
+customcommandshistory:
+- quit
+- 'bug: fixed a bug in the form.'
+hidecommandlog: false
+ignorewhitespaceindiffview: false
+diffcontextsize: 3
+localbranchsortorder: recency
+remotebranchsortorder: alphabetical
+gitlogorder: topo-order
+gitlogshowgraph: always

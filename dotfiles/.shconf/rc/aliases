@@ -1,0 +1,499 @@
+####### Routine Scripts
+# alias gofr='bash $HOME/home/scripts/vocab/voctest.sh'
+
+alias lunchbash='export dynamicDefaultShell="bash"; bash';
+
+alias simpleserver='python3 -m http.server 3000'
+
+##################
+### ALTERNATIVES
+##################
+alias grep='rg --color=auto'
+alias cat='batcat'
+
+##################
+### ADD OPTIONS
+##################
+alias mkdir='mkdir -v'
+alias cp='cp -vi'
+alias mv='mv -vi'
+# alias find=colorfind
+
+alias bcp='rsync -avh --info=progress2'
+fgrep (){
+  grep -nw $1 -e $2
+}
+
+####################
+### MAKE IT SHORTER
+####################
+alias reboot='sudo reboot'
+alias x='startx'
+alias r='source ~/.profile'
+alias reload='source ~/.zshrc'
+
+alias sshhome='ssh venego@core2.home'
+alias sshec2='ssh -i ~/.ssh/c2.pem admin@ec2server.duckdns.org'
+alias sshfsec2='sshfs -oIdentityFile=/home/venego/.ssh/c2.pem admin@ec2server.duckdns.org:/home/admin $HOME/home/ec2homefs'
+
+function keys(){
+  xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+}
+
+function movie(){
+  moviesPath="$HOME/home/movies";
+  selectedMovieDir=$(ls $moviesPath | fzf)
+  if [[ -z $selectedMovieDir ]];then
+    return -1;
+  fi
+  selectedMoviePath="${moviesPath}/${selectedMovieDir}"
+  selectedMovieVideoPath=$(find "${selectedMoviePath}" -type f -name "*.mp4" -o -name "*.mkv" | head -n 1);
+
+  subTitlesSubCommand="";
+  find "${selectedMoviePath}" -type f -name "*.srt" | while read -r file; do
+    subTitlesSubCommand+="--sub-file=\"${file}\" ";
+  done
+
+  # echo $subTitlesSubCommand
+  # echo $selectedMovieVideoPath
+
+  eval $(echo "mpv $subTitlesSubCommand \"${selectedMovieVideoPath}\" 2>/dev/null 1>&2&disown")
+}
+
+# alias noblueleft='xrandr --output HDMI-1 --gamma 1:1:.1'
+# alias dimmleft='xrandr --output HDMI-1 --brightness .4'
+# alias resetleft='xrandr --output HDMI-1 --brightness 1'
+# alias eyesleft='xrandr --output HDMI-1 --gamma 1:1:.1 --brightness .6'
+alias monnoblue='xrandr --output HDMI-2 --gamma 1:1:.1'
+alias monnorm='xrandr --output HDMI-2 --gamma .9'
+alias mondim='xrandr --output HDMI-2 --gamma .6'
+alias mondim2='xrandr --output HDMI-2 --gamma .4'
+alias mondim3='xrandr --output HDMI-2 --gamma .2'
+alias monoff='xrandr --output HDMI-2 --off'
+alias monon='xrandr --output HDMI-2 --auto'
+
+# alias mysql='sudo mysql --prompt="\x1B[32m mysqlSucks > \x1B[0m"'
+# alias mysql2='sudo mysql --prompt="\x1B[31m\\u\x1B[34m@\x1B[32m\\v\x1B[0m:\x1B[36m\\d>\x1B[0m "'
+alias psql="sudo -u postgres psql"
+
+## bkp scripts
+alias bkpos='bash /media/D/bkp/bkpScripts/bkpos';
+alias setupHome='bash /media/D/bkp/bkpScripts/setupHome';
+alias bkpRootConf='bash /media/D/bkp/bkpScripts/bkpRootConf';
+
+# dotfiles bkup aliases
+alias bare='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+alias bareadd='bare add `bare ls-files --modified`'
+alias barecom="bare commit -m 'auto-commit: dotfiles have been changed'"
+alias barePushRemote='bare push origin main'
+alias barePushLocalS='bare push "git@core2.home:/media/D/bkp/bkpRepos/.dotfiles.git" main'
+alias barePushLocal='bare push "/media/D/bkp/bkpRepos/.dotfiles.git" main'
+alias barepush='barePushRemote; barePushLocal; barePushLocalS'
+alias baresync='bareadd && barecom && barepush'
+
+# alias eh='fc -e vim'
+# alias ..='cd ..'
+
+
+## shorts
+
+alias download=yt-dlp
+
+alias xkey='sxhkd'
+alias ll='ls -lh'
+alias ld='ls -lhd'
+alias la='ls -lha'
+function cl () {
+  cd $1 && la;
+}
+
+alias vi=nvim
+alias vim=nvim
+
+alias historyf='history | grep -i'
+alias historyfs='history | grep'
+
+# alias apt='sudo apt'
+# alias apti='sudo apt install'
+# alias apts='sudo apt search'
+# alias aptr='sudo apt remove --purge'
+# alias aptu='sudo apt update'
+# alias aptug='sudo apt upgrade'
+alias apt='sudo nala'
+alias apti='sudo nala install'
+alias apts='sudo nala search'
+alias aptr='sudo nala purge'
+alias apth='sudo nala history'
+alias aptu='sudo nala update'
+alias aptug='sudo nala upgrade'
+
+alias chroot="sudo chroot"
+alias chrootd="sudo systemd-nspawn"
+
+# alias nixip='nix-env -p'
+alias nixi='nix-env -i'
+alias nixia='nix-env -iA'
+alias nixr='nix-env -e'
+alias nixl='nix-env -q'
+alias nixs='nix-env --query --available --attr-path'
+alias nixu='nix-channel --update'
+alias nixug='nix-env --upgrade'
+
+alias updatedb='sudo updatedb'
+alias ctl='sudo systemctl'
+
+alias img='sxiv'
+alias music='ncmpcpp'
+
+alias record='simplescreenrecorder'
+
+alias rn='ranger --choosedir=$HOME/tmp/rangerdir; LASTDIR=`cat $HOME/tmp/rangerdir`; cd "$LASTDIR"'
+
+alias lg='lazygit'
+
+# alias gtst='git status'
+# alias gtlg='git log'
+# alias gtc='git commit -m'
+# alias gtca='git commit --ammend'
+
+alias bluectl='bluetoothctl'
+alias blueon='bluetoothctl power on'
+alias blueshow='bluetoothctl discoverable on; bluetoothctl pairable on'
+alias blueoff='bluetoothctl power off'
+alias bluespecs='bluetoothctl show'
+alias bluedev='bluetoothctl devices'
+alias bluescan='bluetoothctl scan on'
+# red headsets
+# alias blueconnect='bluetoothctl trust 33:46:65:53:27:cb;bluetoothctl connect 33:46:65:53:27:cb'
+# white headphones
+function bluecon(){
+  bluetoothctl untrust 5E:32:F2:29:1C:87;
+  bluetoothctl disconnect 5E:32:F2:29:1C:87;
+
+  bluetoothctl trust 5E:32:F2:29:1C:87;
+  bluetoothctl pair 5E:32:F2:29:1C:87
+  bluetoothctl connect 5E:32:F2:29:1C:87
+} 
+
+
+alias docker='sudo docker'
+alias dkr='sudo docker'
+alias dkrimgs='sudo docker images'
+alias dkrls='sudo docker ps -a'
+alias dkrcln='sudo docker container rm -f $(sudo docker ps -aq)'
+
+alias dkrcmp='sudo docker-compose'
+
+alias box='distrobox'
+
+
+
+##################
+### FIX DEFAULTS
+##################
+
+# show all history instead of top 15
+alias history="history 1"
+
+##################
+### functions
+##################
+
+function sir(){
+  destPath=$1;
+
+  if [ -z $1 ]; then
+    destPath="$HOME/home";
+  fi
+
+  cd $(find $destPath -type d ! -path '*node_modules*' ! -path '*.git*' ! -path '*dist*' ! -path '*build*' ! -path '*php*' ! -name '.config' | fzf);
+}
+
+# function pc(){
+#   bash "$HOME/.shconf/rc/tools/portal" create $1 $(pwd);
+# }
+# function pj(){
+#   eval $(bash "$HOME/.shconf/rc/tools/portal" jump $1);
+# }
+# function pd(){
+#   bash "$HOME/.shconf/rc/tools/portal" delete $1;
+# }
+# function pl(){
+#   bash "$HOME/.shconf/rc/tools/portal" list $1;
+# }
+
+function rm (){
+  local trash_dir="$HOME/trash"
+  local cmd_rm="/bin/rm"
+
+  # Check if the trash directory exists; create it if not
+  if [ ! -d "$trash_dir" ]; then
+      mkdir "$trash_dir"
+  fi
+
+  local files_to_delete=()
+
+  # Loop through all arguments and classify them as files or non-files
+  for arg in "$@"; do
+      if [ -e "$arg" ]; then
+          files_to_delete+=("$arg")
+      fi
+  done
+
+  # Move files to trash
+  if [ ${#files_to_delete[@]} -gt 0 ]; then
+    for file in "${files_to_delete[@]}"; do
+      cp -r "$file" "$trash_dir"
+    done
+  fi
+
+  # Execute the real 'rm'
+  command rm $*
+}
+function trash() {
+  if [[ $1 == 'clean' ]];then
+    echo "cleaning trash..."
+    command rm -rf $HOME/trash/*
+  fi
+}
+
+function smount(){
+  if [[ -z $1 ]];then
+    echo "you have to pride a source name (D, usb, etc)";
+  else
+    source=$1
+    if [[ $source == "D" ]];then
+      device=$(lsblk -o name,serial | grep "ZA465ASK" | awk '{print "/dev/"$1"1"}');
+      if [[ -z $device ]];then
+        echo "device ${1} not attached";
+      else
+        sudo mount $device "/media/D"
+      fi
+    elif [[ $source == "usb" ]];then
+      device=$(lsblk -o name,serial | grep "2312071447501371310918" | awk '{print "/dev/"$1"1"}');
+      if [[ -z $device ]];then
+        echo "device ${1} not attached";
+      else
+        sudo mount $device /media/usb;
+      fi
+    fi
+  fi
+}
+
+function fusbdrive (){
+  if [[ -z $1 ]];then
+    echo "no device was specified"
+    return 1;
+  fi
+
+  device=$1
+
+  mount | grep $device > /dev/null
+  if [[ $? = 0 ]];then
+    sudo umount $device
+  fi
+
+  sudo which sgdisk > /dev/null
+  if [[ ! $? = 0 ]];then
+    echo "Installing sgdisk"
+    sudo apt install sgdisk -y
+  fi
+
+  sudo which parted > /dev/null
+  if [[ ! $? = 0 ]];then
+    echo "Installing parted"
+    sudo apt install parted -y
+  fi
+  
+  sudo sgdisk --zap-all $device
+  sudo parted $device mklabel msdos
+  sudo parted $device mkpart primary ext4 1MB 100%
+  sudo mkfs.ext4 "${device}1"
+}
+
+function sanersync(){
+  rsync -rvzh --perms --executability --times --progress $@
+}
+
+function setinputs (){
+  setxkbmap us
+  setxkbmap -option caps:swapescape
+  setxkbmap -option ctrl:ralt_rctrl
+  xset r rate 300 40
+
+  xinput --set-prop 17 "Coordinate Transformation Matrix" 0.4 0 0 0 0.4 0 0 0 1
+}
+
+function dinfo (){
+  sudo echo ""
+  echo "====================== sudo blkid"
+  sudo blkid
+  echo ""
+  echo "================== df -h"
+  df -h
+  echo ""
+  echo "====================== /etc/fstab"
+  cat /etc/fstab
+}
+
+function memfo (){
+  sudo dmidecode -t memory
+}
+
+function cpy (){
+  cat | xclip -sel clip
+}
+
+function dup(){
+  alacritty -o font.size=13 --working-directory $(pwd) -e "zsh" & disown
+}
+
+alias cpfile=xclip-copyfile
+alias cutfile=xclip-cutfile
+alias pastefile=xclip-pastefile
+
+function srename (){
+  for f in *; do mv "$f" "${f//$1/$2}"; done
+}
+
+# function limitDepth (){
+#   # Read piped input as an argument
+#   input=$(cat)
+#
+#   # Get the depth limit from the function argument
+#   depth_limit=$1
+#
+#   # Limit the depth of each path using the 'cut' command
+#   output=$(echo "$input" | cut -d/ -f1-$depth_limit | uniq)
+#
+#   # Print the output
+#   echo "$output"
+# }
+
+function syscheck(){
+  /usr/bin/du -hc ~/.caches
+  sudo du -hc /var/log
+}
+function sysclean(){
+  rm -rf ~/.caches/*
+  # rotate log files
+  sudo apt clean
+  sudo apt autoremove
+}
+
+# wlxe0b94db7afd2
+# function wifiadd(){
+#   # interface=wlxe0b94db7afd2
+#   interface=sudo /bin/find /sys/class/net -follow -maxdepth 2 -name wireless | cut -d / -f 5
+#   configFile=/etc/wpa_supplicant/wpa_supplicant-$interface.conf
+#   if [ ! -f "$configFile" ]; then
+#     sudo touch $configFile
+#     sudo chown root:venego $configFile
+#     sudo chmod 660 $configFile
+#     echo 'ctrl_interface=/run/wpa_supplicant' >> $configFile
+#     echo 'update_config=1' >> $configFile
+#     echo '' >> $configFile
+#
+#     # this is independent from the condition but it has to be done once
+#     ifFile=/etc/network/interfaces
+#     sudo chown root:venego $ifFile
+#     sudo chmod 660 $ifFile
+#     echo '' >> $ifFile
+#     echo '# wifi network interface' >> $ifFile
+#     echo iface $interface inet dhcp >> $ifFile
+#   fi
+#
+#   sudo wpa_passphrase $1 $2 | sed '/#psk/d' >> $configFile
+# }
+# function wificon(){
+#   # interface=wlxe0b94db7afd2
+#   interface=sudo /bin/find /sys/class/net -follow -maxdepth 2 -name wireless | cut -d / -f 5
+#   sudo ip link set dev $interface up
+#   sudo ifup $interface
+#   sudo wpa_supplicant -B -i $interface -c /etc/wpa_supplicant/wpa_supplicant-$interface.conf
+# }
+
+alias wifilist='nmcli d wifi list'
+function wificon(){
+  if [[ -z "$1" ]];then
+    echo "no wifi AP name was provided!";
+  else
+    sudo ifconfig $wlanifname up
+
+    if [[ "$1" == "dlink" ]];then
+      nmcli d wifi connect $1 password itsalljustanumbersgame
+    elif [[ "$1" == "intersteller" ]];then
+      nmcli d wifi connect intersteller password Hq5pN73Q0Mb91E
+    elif [[ "$1" == "temp" ]];then
+      nmcli d wifi connect Temp password whilenointernetisavailable
+    elif [[ "$1" == "inwi" ]];then
+      nmcli d wifi connect Inwi password wifis3ib
+    elif [[ "$1" == "tenda" ]];then
+      nmcli d wifi connect Tenda_04B4B0 password 10203090
+    elif [[ "$1" == "dazay" ]];then
+      nmcli d wifi connect Dazay password wifis3ib
+    else
+      nmcli d wifi connect $1 password $(read -s pass;echo $pass)
+    fi
+  fi
+}
+# function wificonh(){
+#   nmcli d wifi connect $1 password $(read -s pass;echo $pass) hidden yes
+# }
+function wifidisc(){
+  if [[ -z "$1" ]];then
+    nmcli d disconnect $wlanifname
+    sudo ifconfig $wlanifname down
+  else
+    sudo ifconfig $1 up
+    nmcli d disconnect $1
+  fi
+}
+
+alias netctl='sudo wondershaper'
+
+alias hide='proxychains'
+alias net='sudo ifconfig'
+alias netup="sudo ifconfig ${ethifname} up"
+alias netdown="sudo ifconfig ${ethifname} down"
+alias netscan="sudo arp-scan --interface=${ethifname} --localnet --macfile=/etc/arp-scan/mac-vendor.txt --ouifile=/usr/share/arp-scan/ieee-oui.txt"
+alias netscanwlan="sudo arp-scan --interface=${wlanifname} --localnet --macfile=/etc/arp-scan/mac-vendor.txt --ouifile=/usr/share/arp-scan/ieee-oui.txt"
+alias netlist="sudo arp"
+function netflood(){
+  sudo hping3 -S --flood -V -p 80 192.168.1.$1
+}
+function restartint(){
+  interface=$1
+  sudo ifdown $interface; sudo ifup $interface; ip a
+}
+alias nmaplist="nmap -sP 192.168.1.0/24"
+function randmac(){
+  # TODO: if the list is empty or $1 is empty gen random suffix
+  # RandVendor=$(echo $RANDOM | md5sum | sed 's/.\{2\}/&:/g' | cut -c 1-8)
+  # OR
+  # sudo macchanger -r -b $ethifname
+
+  Vendor=$(macchanger -l | grep -i $1 | sed '3q;d' | awk '{print $3}')
+  Tail=$(echo $RANDOM | md5sum | sed 's/.\{2\}/&:/g' | cut -c 1-8)
+  Mac="$Vendor:$Tail"
+  sudo macchanger -m $Mac $ethifname
+}
+function mitm(){
+  sudo ettercap -T -q -i $ethifname -M ARP /192.168.1.$1// /192.168.1.1//
+}
+function netannoy(){
+  sudo arpspoof -i $ethifname -t 192.168.1.1 192.168.1.$1
+  # sudo arpspoof -i $ethifname -t 192.168.1.$1 192.168.1.1
+}
+# function netspoof(){
+#   sudo sysctl -w net.ipv4.ip_forward=1;
+#   sudo arpspoof -i $ethifname -t 192.168.1.1 192.168.1.$1&
+#   sudo arpspoof -i $ethifname -t 192.168.1.$1 192.168.1.1
+# }
+# function netunspoof(){
+#   sudo sysctl -w net.ipv4.ip_forward=0;
+#   sudo arpspoof -i $ethifname -t 192.168.1.1 192.168.1.1;
+#   sudo arpspoof -i $ethifname -t 192.168.1.$1 192.168.1.$1;
+# }
+
+#### apps aliases (aliases that were added by the post-installation script)

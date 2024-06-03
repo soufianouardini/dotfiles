@@ -1,0 +1,4 @@
+configuration {
+  modi: "run";
+}
+@theme "~/.config/rofi/themes/top.rasi"

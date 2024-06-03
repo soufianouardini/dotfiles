@@ -1,0 +1,2 @@
+# export PS1='\e[0;31m\u\e[0m:\w\n-_- \$ '
+export PS1='\e[0;31m\u\e[0m:\e[0;32m\w\e[0m\n-_- \$ '

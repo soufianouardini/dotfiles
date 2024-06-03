@@ -1,0 +1,9 @@
+os:
+  editCommand: 'toggleterm'
+
+gui:
+  theme:
+    selectedLineBgColor:
+      - underline
+    selectedRangeBgColor:
+      - underline

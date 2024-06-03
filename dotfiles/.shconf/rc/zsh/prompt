@@ -1,0 +1,12 @@
+#!/bin/zsh
+# colors for prompt
+autoload -U colors && colors
+PROMPT=$'%B%{$fg[red]%}╭─ %n%{$fg[yellow]%}@%{$fg[red]%}%m:%{$fg[white]%}%~\n\r%{$fg[red]%}╰─> %{$fg[white]%}%{$fg[yellow]%}-_- %# %b'
+
+## git info in prompt
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+RPROMPT='%B${vcs_info_msg_0_}'
+zstyle ':vcs_info:git:*' formats '%b'

@@ -1,0 +1,69 @@
+# i3 config file (v4)
+
+#################
+### VARIABLES ###
+#################
+set $Alt Mod1
+set $Super Mod4
+
+set $DISPLAY_DEV_1 HDMI-1
+set $DISPLAY_DEV_2 HDMI-2
+
+######################
+### GENERAL CONFIG ###
+######################
+font pango:monospace 10
+default_border pixel 2
+default_floating_border pixel 2
+
+# Use Mouse+$Alt to drag floating windows to their wanted position
+floating_modifier $Alt
+
+# FORCE FLOATING FOR ST TERMINAL
+for_window [class="st-256color"] floating enable
+
+# Disable auto focus
+# focus_on_window_activation urgent
+# no_focus [all]
+
+##########################
+### DEFAULT WORKSPACES ###
+##########################
+assign [class="Chromium"] "1"
+assign [class="Google-chrome"] "1"
+assign [class="Brave-browser"] "1"
+assign [class="Firefox"] "1"
+assign [class="Firefox-esr"] "1"
+assign [class="discord"] "2"
+#assign [class="Alacritty"] "3"
+assign [class="Code"] "4"
+assign [class="Cursor"] "4"
+assign [class="Pavucontrol"] "9"
+assign [class="virt-manager"] "9"
+assign [class="virt-viewer"] "9"
+assign [class="libreoffice"] "9"
+assign [class="gimp"] "9"
+
+#######################
+### DEFAULT MONITOR ###
+#######################
+workspace "1" output $DISPLAY_DEV_2
+workspace "2" output $DISPLAY_DEV_2
+workspace "3" output $DISPLAY_DEV_2
+workspace "4" output $DISPLAY_DEV_2
+workspace "5" output $DISPLAY_DEV_2
+workspace "6" output $DISPLAY_DEV_2
+workspace "7" output $DISPLAY_DEV_2
+
+##################
+### AUTO START ###  START UP APPS SHOULD BE IN .PROFILE
+##################
+# Start XDG autostart .desktop files using dex. See also
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+exec --no-startup-id dex --autostart --environment i3
+# exec --no-startup-id alacritty
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+
