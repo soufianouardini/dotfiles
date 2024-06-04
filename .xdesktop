@@ -16,7 +16,7 @@ flameshot&
 
 display (){
   # fixing my overscan in my tv
-  # xrandr --output HDMI-1 --panning 1920x1080 --transform 1.043,0,-42,0,1.046,-30,0,0,1
+  xrandr --output HDMI-1 --panning 1920x1080 --transform 1.043,0,-42,0,1.046,-30,0,0,1
 
   # disabling screen saver
   xset s off -dpms

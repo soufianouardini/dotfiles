@@ -69,6 +69,8 @@ alt + Return
 super + a; {a,c,b,e,r,d,v,s,p}
   {dmenu_run, chromium, brave-browser, microsoft-edge, alacritty -e "ranger", discord, code, flameshot gui, bash -c "$HOME/home/scripts/polybarToggle.sh"}
 
+alt + p
+  dmenu_run
 
 # monitor
 super + v; {1-9}
