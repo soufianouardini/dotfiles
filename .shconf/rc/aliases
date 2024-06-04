@@ -85,8 +85,8 @@ alias bkpRootConf='bash /media/D/bkp/bkpScripts/bkpRootConf';
 alias bare='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias bareadd='bare add `bare ls-files --modified`'
 alias barecom="bare commit -m 'auto-commit: dotfiles have been changed'"
-alias barePushRemote='bare push origin main'
-alias baresync='bareadd && barecom && barePushRemote'
+alias barePush='bare push origin main'
+alias baresync='bareadd && barecom && barePush'
 
 # alias eh='fc -e vim'
 # alias ..='cd ..'
