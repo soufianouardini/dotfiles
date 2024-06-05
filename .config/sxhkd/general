@@ -2,14 +2,13 @@
 super + r; a
   i3-msg restart
   bash $HOME/.config/polybar/lunch.sh
-  bash $HOME/home/scripts/sxhkd-lunch.sh
+  bash $HOME/.config/sxhkd/sxhkd-lunch.sh
 super + r; s
   bash $HOME/home/scripts/sxhkd-lunch.sh
 super + r; i
   i3-msg restart
 super + r; p
   polybar-msg cmd restart
-# bash $HOME/.config/polybar/lunch.sh
 
 # copy to clipboard history
 # beware keybindings duplication; sxhdxk... sucks at handling errors
@@ -71,6 +70,8 @@ super + a; {a,c,b,e,r,d,v,s,p}
 
 alt + p
   dmenu_run
+alt + v
+  flameshot gui
 
 # monitor
 super + v; {1-9}
